@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started with GitHub Pages — Glenn</title>
+  <meta name="description" content="A step-by-step guide to hosting your static site for free using GitHub Pages." />
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&family=Fira+Code&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">glenn.dev</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><a href="/blog/">Blog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- POST HEADER -->
+  <div class="post-header">
+    <a href="../" class="back-link">← Back to Blog</a>
+    <p class="section-label">March 21, 2026 &nbsp;·&nbsp; 4 min read</p>
+    <h1 class="section-title">Getting Started with GitHub Pages</h1>
+    <p style="color: var(--text-muted);">A step-by-step guide to hosting your static site for free using GitHub Pages.</p>
+  </div>
+
+  <!-- POST BODY -->
+  <div class="post-body">
+
+    <p>
+      GitHub Pages is one of the easiest ways to get a static website live on the internet — for free.
+      It serves directly from a GitHub repository, which means your deployment workflow is just a <code>git push</code>.
+    </p>
+
+    <h2>Prerequisites</h2>
+    <ul>
+      <li>A GitHub account</li>
+      <li>Your static site files (HTML, CSS, JS)</li>
+      <li>Git installed locally</li>
+    </ul>
+
+    <h2>Step 1: Create a Repository</h2>
+    <p>
+      Go to GitHub and create a new repository. For a personal site, name it
+      <code>yourusername.github.io</code>. This is the magic name that GitHub uses to serve
+      your site at <code>https://yourusername.github.io</code>.
+    </p>
+
+    <h2>Step 2: Push Your Site</h2>
+    <p>In your project directory, initialize git and push:</p>
+    <pre><code>git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/yourusername/yourusername.github.io.git
+git push -u origin main</code></pre>
+
+    <h2>Step 3: Enable GitHub Pages</h2>
+    <p>
+      In your repository settings, navigate to <strong>Pages</strong> under the <em>Code and automation</em>
+      section. Set the source to <code>Deploy from a branch</code>, select <code>main</code>, and
+      save. GitHub will build and deploy your site within a minute or two.
+    </p>
+
+    <h2>Step 4: Visit Your Site</h2>
+    <p>
+      Your site is now live at <code>https://yourusername.github.io</code>. Every time you
+      push to the <code>main</code> branch, GitHub automatically redeploys.
+    </p>
+
+    <h2>Custom Domain (Optional)</h2>
+    <p>
+      You can connect a custom domain in the same Pages settings panel. You'll need to add a
+      <code>CNAME</code> record pointing to <code>yourusername.github.io</code> with your DNS
+      provider, then enter the domain in GitHub's UI.
+    </p>
+
+    <p>That's it — ship it!</p>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Glenn. Built with plain HTML, CSS & JS. Hosted on GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>

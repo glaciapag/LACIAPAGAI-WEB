@@ -1,0 +1,81 @@
+{
+  "site": {
+    "title": "Glenn Laciapag",
+    "description": "Data engineer specializing in Python, SQL, Power BI, and AWS.",
+    "navLogo": "laciapag.ai",
+    "nav": [
+      { "label": "About",      "url": "/#about" },
+      { "label": "Experience", "url": "/#experience" },
+      { "label": "Skills",     "url": "/#skills" },
+      { "label": "Contact",    "url": "/#contact" },
+      { "label": "Blog",       "url": "/blog/" }
+    ]
+  },
+  "hero": {
+    "name": "Glenn",
+    "tagline": "I build robust data pipelines & synthesize complex datasets 🧪",
+    "description": "Data engineer with a focus on Python, SQL, and AWS. Currently bridging traditional data engineering with modern AI applications and emerging technologies."
+  },
+  "about": {
+    "avatar": "🧑🏻‍💻",
+    "paragraphs": [
+      "I am a chemist turned data engineer, passionate about building robust data pipelines and synthesizing complex datasets. My current work revolves around Python, SQL, and AWS (Lambda, Glue, Redshift).",
+      "I am currently pursuing a Professional Master in Data Science (Analytics) at UP Diliman, and my focus is on the intersection of data engineering and AI, utilizing intelligent systems to drive measurable business value."
+    ]
+  },
+  "experience": [
+    {
+      "role": "Senior Data Engineer",
+      "company": "Acme Corp",
+      "period": "2023 — Present",
+      "description": "Lead the design and implementation of cloud-native data pipelines on AWS, processing millions of records daily. Driving the adoption of LLM-powered data products.",
+      "tags": ["Python", "AWS Glue", "Redshift", "LLMs"]
+    },
+    {
+      "role": "Data Engineer",
+      "company": "DataCo",
+      "period": "2021 — 2023",
+      "description": "Built and maintained ETL pipelines for a SaaS analytics platform. Migrated on-premise data warehouse to Redshift, reducing query times by 60%.",
+      "tags": ["Python", "SQL", "Redshift", "dbt"]
+    },
+    {
+      "role": "Data Analyst",
+      "company": "StartupXYZ",
+      "period": "2019 — 2021",
+      "description": "Created dashboards and reports to support business decisions. Automated recurring reporting workflows with Python, saving 10+ hours per week.",
+      "tags": ["Python", "SQL", "Power BI"]
+    }
+  ],
+  "skills": [
+    {
+      "category": "Languages",
+      "items": ["Python", "SQL", "NodeJS", "R Programming"]
+    },
+    {
+      "category": "AWS",
+      "items": ["Lambda", "Glue", "Redshift", "S3"]
+    },
+    {
+      "category": "Data Engineering",
+      "items": ["ETL / ELT Pipelines", "Data Modeling", "Pandas, Polars, PySpark", "dbt core"]
+    },
+    {
+      "category": "Data Analytics & BI",
+      "items": ["Power BI (DAX)", "SAP Analytics Cloud", "Excel"]
+    },
+    {
+      "category": "AI & ML",
+      "items": ["Statistical Machine Learning", "LLM", "RAG", "AI Agents"]
+    },
+  {
+      "category": "Development",
+      "items": ["FastAPI", "Git / Github / Bitbucket", "HTML / CSS / JS", "AI-Assisted Coding"]
+    }
+  ],
+  "contact": {
+    "links": [
+      { "icon": "💼", "label": "Connect with me on LinkedIn", "url": "https://www.linkedin.com/in/glaciapag/" }
+    ]
+  },
+  "footer": "© 2026 Glenn. Built with plain HTML, CSS & JS using Claude Code. Hosted on GitHub Pages."
+}
