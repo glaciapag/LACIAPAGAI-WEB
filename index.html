@@ -5,68 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title></title>
   <meta name="description" content="" />
-  <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-inner">
-      <a href="/" class="nav-logo" id="nav-logo"></a>
-      <ul class="nav-links" id="nav-links"></ul>
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-tag" id="hero-badge"></div>
-    <h1>Hi, I'm <span id="hero-name"></span>.<br /><span id="hero-tagline"></span></h1>
-    <div class="hero-actions">
-      <a href="#experience" class="btn btn-primary">View My Work</a>
-      <a href="#contact" class="btn btn-outline">Get in Touch</a>
-    </div>
-  </div>
+  <header>
+    <h1><a id="site-name" href="/"></a></h1>
+    <nav class="header-nav" id="header-nav">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀︎</button>
+    </nav>
+  </header>
 
   <!-- ABOUT -->
   <section id="about">
-    <p class="section-label">About Me</p>
-    <div class="about-grid">
-      <div class="about-avatar" id="about-avatar"></div>
-      <div class="about-text">
-        <h3>A bit about me</h3>
-        <div id="about-paragraphs"></div>
-        <a href="blog/" class="btn btn-outline" style="margin-top: 0.5rem;">Read My Blog →</a>
-      </div>
-    </div>
+    <div class="bio" id="about-paragraphs"></div>
   </section>
+
+  <hr />
 
   <!-- EXPERIENCE -->
   <section id="experience">
-    <p class="section-label">Experience</p>
-    <h2 class="section-title">Where I've worked</h2>
-    <p class="section-desc">My professional journey so far.</p>
-    <div class="timeline" id="experience-timeline"></div>
+    <h2>Experience</h2>
+    <div class="timeline" id="experience-list"></div>
   </section>
+
+  <hr />
 
   <!-- SKILLS -->
   <section id="skills">
-    <p class="section-label">Skills</p>
-    <h2 class="section-title">What I work with</h2>
-    <p class="section-desc">Technologies and tools I use day to day.</p>
-    <div class="skills-grid" id="skills-grid"></div>
+    <h2>Skills</h2>
+    <div class="skills-grid" id="skills-list"></div>
   </section>
+
+  <hr />
 
   <!-- CONTACT -->
   <section id="contact">
-    <p class="section-label">Contact</p>
-    <h2 class="section-title">Let's talk</h2>
-    <div class="contact-links" id="contact-links"></div>
+    <h2>Find me online</h2>
+    <div id="contact-links"></div>
   </section>
 
-  <!-- FOOTER -->
+  <hr />
+
   <footer>
     <p id="footer-text"></p>
   </footer>

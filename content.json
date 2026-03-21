@@ -4,7 +4,6 @@
     "description": "Data engineer specializing in Python, SQL, Power BI, and AWS.",
     "navLogo": "laciapag.ai",
     "nav": [
-      { "label": "About",      "url": "/#about" },
       { "label": "Experience", "url": "/#experience" },
       { "label": "Skills",     "url": "/#skills" },
       { "label": "Contact",    "url": "/#contact" },
@@ -13,37 +12,33 @@
   },
   "hero": {
     "name": "Glenn",
-    "tagline": "I build robust data pipelines & synthesize complex datasets 🧪",
-    "description": "Data engineer with a focus on Python, SQL, and AWS. Currently bridging traditional data engineering with modern AI applications and emerging technologies."
+    "tagline": "I build robust data pipelines & synthesize complex datasets 🧪"
   },
   "about": {
     "avatar": "🧑🏻‍💻",
     "paragraphs": [
-      "I am a chemist turned data engineer, passionate about building robust data pipelines and synthesizing complex datasets. My current work revolves around Python, SQL, and AWS (Lambda, Glue, Redshift).",
+      "I am a chemist 🧑🏻‍🔬 turned data engineer 🧑🏻‍💻, passionate about building robust data pipelines and synthesizing complex datasets 🧪. My expertise revolves around Python, SQL, and AWS (Lambda, Glue, Redshift).",
       "I am currently pursuing a Professional Master in Data Science (Analytics) at UP Diliman, and my focus is on the intersection of data engineering and AI, utilizing intelligent systems to drive measurable business value."
     ]
   },
   "experience": [
     {
-      "role": "Senior Data Engineer",
-      "company": "Acme Corp",
-      "period": "2023 — Present",
-      "description": "Lead the design and implementation of cloud-native data pipelines on AWS, processing millions of records daily. Driving the adoption of LLM-powered data products.",
-      "tags": ["Python", "AWS Glue", "Redshift", "LLMs"]
-    },
-    {
       "role": "Data Engineer",
-      "company": "DataCo",
-      "period": "2021 — 2023",
-      "description": "Built and maintained ETL pipelines for a SaaS analytics platform. Migrated on-premise data warehouse to Redshift, reducing query times by 60%.",
-      "tags": ["Python", "SQL", "Redshift", "dbt"]
+      "company": "Aboitiz Foods",
+      "period": "Oct 2023 — Present",
+      "description": "Designs, develops, and maintains scalable, serverless ETL pipelines using a cost-optimized, event-driven cloud architecture. Focuses on reliable, low-overhead data ingestion and processing without the need for managed infrastructure."
     },
     {
-      "role": "Data Analyst",
-      "company": "StartupXYZ",
-      "period": "2019 — 2021",
-      "description": "Created dashboards and reports to support business decisions. Automated recurring reporting workflows with Python, saving 10+ hours per week.",
-      "tags": ["Python", "SQL", "Power BI"]
+      "role": "Python Developer",
+      "company": "Infinit-O",
+      "period": "Apr 2022 — Oct 2023",
+      "description": "Contributes to internal Python codebases to support end-to-end data workflows, including extracting, transforming, and loading data for business reporting, client data requests, and dashboard development."
+    },
+    {
+      "role": "Materials Science Chemist",
+      "company": "TDK Philippines Corporation",
+      "period": "Apr 2018 - Apr 2022",
+      "description": "Applied statistical analysis, data processing, and visualization techniques in a materials science laboratory setting using SAS JMP and Python. Leveraged experimental datasets to derive insights, support research decisions, and communicate findings, building a strong foundation in data-driven problem solving and quantitative analysis."
     }
   ],
   "skills": [
@@ -57,7 +52,7 @@
     },
     {
       "category": "Data Engineering",
-      "items": ["ETL / ELT Pipelines", "Data Modeling", "Pandas, Polars, PySpark", "dbt core"]
+      "items": ["ETL/ELT Pipelines", "Data Modeling", "Pandas/Polars/PySpark", "dbt core"]
     },
     {
       "category": "Data Analytics & BI",
@@ -65,16 +60,26 @@
     },
     {
       "category": "AI & ML",
-      "items": ["Statistical Machine Learning", "LLM", "RAG", "AI Agents"]
+      "items": ["Machine Learning", "LLM", "RAG", "AI Agents"]
     },
-  {
+    {
       "category": "Development",
-      "items": ["FastAPI", "Git / Github / Bitbucket", "HTML / CSS / JS", "AI-Assisted Coding"]
+      "items": ["FastAPI", "Git/Github/Bitbucket", "HTML/CSS/JS", "AI-Assisted Coding"]
+    }
+  ],
+  "posts": [
+    {
+      "slug": "getting-started-with-github-pages",
+      "title": "Getting Started with GitHub Pages",
+      "date": "Mar 21, 2026",
+      "description": "A step-by-step guide to hosting your static site for free using GitHub Pages."
     }
   ],
   "contact": {
     "links": [
-      { "icon": "💼", "label": "Connect with me on LinkedIn", "url": "https://www.linkedin.com/in/glaciapag/" }
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/glaciapag/" },
+      { "label": "AWS Solutions Architect Associate", "url": "https://www.credly.com/badges/dcfbc4f4-0c6c-40c4-b1cf-504878dfcac0/linked_in_profile" },
+      { "label": "GitHub", "url": "https://github.com/glaciapag" }
     ]
   },
   "footer": "© 2026 Glenn. Built with plain HTML, CSS & JS using Claude Code. Hosted on GitHub Pages."

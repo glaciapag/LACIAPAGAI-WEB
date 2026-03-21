@@ -30,6 +30,13 @@ git remote add origin https://github.com/yourusername/yourusername.github.io.git
 git push -u origin main
 ```
 
+```python
+import pandas as pd
+
+df = pd.read_csv("test.csv")
+print(df.head())
+```
+
 ## Step 3: Enable GitHub Pages
 
 In your repository settings, navigate to **Pages** under the *Code and automation* section. Set the source to `Deploy from a branch`, select `main`, and save. GitHub will build and deploy your site within a minute or two.
@@ -43,3 +50,4 @@ Your site is now live at `https://yourusername.github.io`. Every time you push t
 You can connect a custom domain in the same Pages settings panel. Add a `CNAME` record pointing to `yourusername.github.io` with your DNS provider, then enter the domain in GitHub's UI.
 
 That's it — ship it!
+

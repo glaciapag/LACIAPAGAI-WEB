@@ -3,98 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog — Glenn</title>
+  <title></title>
   <meta name="description" content="" />
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/highlight.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" id="hljs-theme" href="../css/highlight.min.css" />
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-inner">
-      <a href="/" class="nav-logo" id="nav-logo"></a>
-      <ul class="nav-links" id="nav-links"></ul>
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
-    </div>
-  </nav>
+  <header>
+    <h1><a id="site-name" href="../"></a></h1>
+    <nav class="header-nav" id="header-nav">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀︎</button>
+    </nav>
+  </header>
 
-  <!-- POST HEADER -->
-  <div class="post-header">
-    <a href="../" class="back-link">← Back to Blog</a>
-    <p class="section-label" id="post-meta">Loading...</p>
-    <h1 class="section-title" id="post-title"></h1>
-    <p style="color: var(--text-muted);" id="post-description"></p>
-  </div>
+  <a href="/blog/" class="post-back">← Writing</a>
 
-  <!-- POST BODY -->
+  <h1 class="post-title" id="post-title"></h1>
+  <p class="post-meta" id="post-meta"></p>
+
   <div class="post-body" id="post-body"></div>
 
-  <!-- FOOTER -->
+  <hr />
+
   <footer>
-    <p>© 2026 Glenn. Built with plain HTML, CSS & JS. Hosted on GitHub Pages.</p>
+    <p id="footer-text"></p>
   </footer>
 
   <script src="../js/main.js"></script>
   <script src="../js/marked.min.js"></script>
   <script src="../js/highlight.min.js"></script>
   <script>
-    // Configure marked to use highlight.js for code blocks
-    marked.setOptions({
-      highlight: (code, lang) => {
-        if (lang && hljs.getLanguage(lang)) {
-          return hljs.highlight(code, { language: lang }).value;
-        }
-        return hljs.highlightAuto(code).value;
-      },
-      breaks: true,
-    });
+    marked.use({ breaks: true });
 
-    // Parse simple frontmatter (---\nkey: value\n---\n)
     function parseFrontmatter(text) {
       const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
       if (!match) return { meta: {}, content: text };
-
       const meta = {};
       match[1].split('\n').forEach((line) => {
         const [key, ...rest] = line.split(':');
         if (key) meta[key.trim()] = rest.join(':').trim();
       });
-
       return { meta, content: match[2] };
     }
 
     async function loadPost() {
-      const params = new URLSearchParams(window.location.search);
-      const slug = params.get('post');
-
-      if (!slug) {
-        document.getElementById('post-body').innerHTML = '<p>No post specified.</p>';
-        return;
-      }
+      const slug = new URLSearchParams(window.location.search).get('post');
+      if (!slug) return;
 
       try {
         const res = await fetch(`posts/${slug}.md`);
-        if (!res.ok) throw new Error('Post not found');
-        const raw = await res.text();
-        const { meta, content } = parseFrontmatter(raw);
+        if (!res.ok) throw new Error();
+        const { meta, content } = parseFrontmatter(await res.text());
 
-        // Update page metadata
-        document.title = `${meta.title || slug} — Glenn`;
+        document.title = `${meta.title || slug}`;
         document.querySelector('meta[name="description"]').setAttribute('content', meta.description || '');
         document.getElementById('post-title').textContent = meta.title || slug;
-        document.getElementById('post-description').textContent = meta.description || '';
-        document.getElementById('post-meta').textContent =
-          [meta.date, meta.readTime].filter(Boolean).join(' · ');
-
-        // Render markdown
+        document.getElementById('post-meta').textContent = [meta.date, meta.readTime].filter(Boolean).join(' · ');
         document.getElementById('post-body').innerHTML = marked.parse(content);
-      } catch (err) {
+        try { hljs.highlightAll(); } catch {}
+      } catch {
         document.getElementById('post-title').textContent = 'Post not found';
-        document.getElementById('post-body').innerHTML =
-          '<p>Sorry, this post could not be loaded.</p>';
+        document.getElementById('post-meta').textContent = '';
       }
     }
 

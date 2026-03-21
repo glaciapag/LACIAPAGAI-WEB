@@ -1,4 +1,4 @@
-// Theme toggle
+// Theme
 const root = document.documentElement;
 const toggleBtn = document.getElementById('theme-toggle');
 
@@ -8,138 +8,129 @@ function getSystemTheme() {
 
 function applyTheme(theme) {
   root.setAttribute('data-theme', theme);
-  if (toggleBtn) toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  if (toggleBtn) toggleBtn.textContent = theme === 'dark' ? '☽' : '☀︎';
   localStorage.setItem('theme', theme);
+  const hljsTheme = document.getElementById('hljs-theme');
+  if (hljsTheme) {
+    hljsTheme.href = theme === 'dark'
+      ? '../css/highlight.min.css'
+      : '../css/highlight-light.min.css';
+  }
 }
 
-const saved = localStorage.getItem('theme') || getSystemTheme();
-applyTheme(saved);
+applyTheme(localStorage.getItem('theme') || getSystemTheme());
 
 if (toggleBtn) {
   toggleBtn.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme') || getSystemTheme();
-    applyTheme(current === 'dark' ? 'light' : 'dark');
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   });
 }
 
-// Resolve path to content.json regardless of page depth
+// Resolve content.json path based on page depth
 function contentPath() {
   const depth = window.location.pathname.split('/').filter(Boolean).length;
   return depth >= 2 ? '../content.json' : '/content.json';
 }
 
-// Render nav on every page
-async function renderNav(c) {
-  const logo = document.getElementById('nav-logo');
-  const links = document.getElementById('nav-links');
-  if (logo) logo.textContent = c.site.navLogo;
-  if (links) {
-    links.innerHTML = c.site.nav
-      .map((item) => `<li><a href="${item.url}">${item.label}</a></li>`)
-      .join('');
-  }
-}
-
-// Render content from content.json (only on index page)
-async function renderContent() {
+async function render() {
   const res = await fetch(contentPath());
   const c = await res.json();
 
-  await renderNav(c);
-
-  const isIndex = document.getElementById('hero-name');
-  if (!isIndex) return;
-
   // Meta
   document.title = c.site.title;
-  document.querySelector('meta[name="description"]').setAttribute('content', c.site.description);
-  document.getElementById('nav-logo').textContent = c.site.navLogo;
+  document.querySelector('meta[name="description"]')?.setAttribute('content', c.site.description);
 
-  // Hero
-  const badge = document.getElementById('hero-badge');
-  if (c.hero.badge) {
-    badge.textContent = c.hero.badge;
-  } else {
-    badge.style.display = 'none';
+  // Header
+  const siteName = document.getElementById('site-name');
+  if (siteName) siteName.textContent = c.site.navLogo;
+
+  const nav = document.getElementById('header-nav');
+  if (nav && c.site.nav) {
+    const onBlogPage = window.location.pathname.includes('/blog/');
+    c.site.nav.forEach((item) => {
+      const a = document.createElement('a');
+      a.href = onBlogPage ? item.url.replace(/^\//, '../') : item.url;
+      a.textContent = item.label;
+      nav.insertBefore(a, toggleBtn);
+    });
   }
-  document.getElementById('hero-name').textContent = c.hero.name;
-  document.getElementById('hero-tagline').textContent = c.hero.tagline;
 
   // About
-  const avatarEl = document.getElementById('about-avatar');
-  if (c.about.avatar.match(/\.(jpg|jpeg|png|webp|gif|svg)$/i)) {
-    avatarEl.innerHTML = `<img src="${c.about.avatar}" alt="Avatar" />`;
-  } else {
-    avatarEl.textContent = c.about.avatar;
+  const aboutEl = document.getElementById('about-paragraphs');
+  if (aboutEl) {
+    aboutEl.innerHTML = c.about.paragraphs.map((p) => `<p>${p}</p>`).join('');
   }
-  document.getElementById('about-paragraphs').innerHTML = c.about.paragraphs
-    .map((p) => `<p>${p}</p>`)
-    .join('');
 
   // Experience
-  document.getElementById('experience-timeline').innerHTML = c.experience
-    .map(
-      (e) => `
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <span class="timeline-role">${e.role}</span>
-          <span class="timeline-period">${e.period}</span>
+  const expEl = document.getElementById('experience-list');
+  if (expEl) {
+    expEl.innerHTML = c.experience.map((e) => `
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-role">${e.role}</span>
+          <span class="exp-period">${e.period}</span>
         </div>
-        <div class="timeline-company">${e.company}</div>
-        <p class="timeline-desc">${e.description}</p>
-        <div class="card-tags">${e.tags.map((t) => `<span class="tag">${t}</span>`).join('')}</div>
-      </div>`
-    )
-    .join('');
+        <div class="exp-company">${e.company}</div>
+        <p class="exp-desc">${e.description}</p>
+      </div>
+    `).join('');
+  }
 
   // Skills
-  document.getElementById('skills-grid').innerHTML = c.skills
-    .map(
-      (g) => `
-      <div class="skill-group">
+  const skillsEl = document.getElementById('skills-list');
+  if (skillsEl) {
+    skillsEl.innerHTML = c.skills.map((g) => `
+      <div class="skill-card">
         <h4>${g.category}</h4>
         <ul>${g.items.map((i) => `<li>${i}</li>`).join('')}</ul>
-      </div>`
-    )
-    .join('');
+      </div>
+    `).join('');
+  }
 
   // Contact
-  document.getElementById('contact-links').innerHTML = c.contact.links
-    .map(
-      (l) => `<a href="${l.url}" class="contact-link" ${l.url.startsWith('http') ? 'target="_blank"' : ''}>${l.icon} ${l.label}</a>`
-    )
-    .join('');
+  const contactEl = document.getElementById('contact-links');
+  if (contactEl) {
+    contactEl.innerHTML = c.contact.links.map((l) => `
+      <p class="contact-line">
+        <a href="${l.url}" ${l.url.startsWith('http') ? 'target="_blank"' : ''}>${l.label}</a>
+      </p>
+    `).join('');
+  }
+
+  // Blog list with pagination
+  const blogListEl = document.getElementById('blog-list');
+  if (blogListEl && c.posts) {
+    const onBlogPage = window.location.pathname.includes('/blog/');
+    const base = onBlogPage ? '' : '../blog/';
+    const perPage = 5;
+    const params = new URLSearchParams(window.location.search);
+    const page = Math.max(1, parseInt(params.get('page') || '1'));
+    const total = Math.ceil(c.posts.length / perPage);
+    const slice = c.posts.slice((page - 1) * perPage, page * perPage);
+
+    blogListEl.innerHTML = slice.map((p) => `
+      <a href="${base}post.html?post=${p.slug}" class="blog-card">
+        <p class="blog-card-meta">${p.date}</p>
+        <h3>${p.title}</h3>
+        <p>${p.description}</p>
+      </a>
+    `).join('');
+
+    if (total > 1) {
+      const pagination = document.getElementById('blog-pagination');
+      if (pagination) {
+        pagination.innerHTML = `
+          ${page > 1 ? `<a href="?page=${page - 1}">← Newer</a>` : '<span></span>'}
+          <span>${page} / ${total}</span>
+          ${page < total ? `<a href="?page=${page + 1}">Older →</a>` : '<span></span>'}
+        `;
+      }
+    }
+  }
 
   // Footer
-  document.getElementById('footer-text').textContent = c.footer;
-
-  // Init scroll observer after content is rendered
-  initScrollObserver();
+  const footerEl = document.getElementById('footer-text');
+  if (footerEl) footerEl.textContent = c.footer;
 }
 
-function initScrollObserver() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navLinks.forEach((link) => {
-            link.classList.toggle(
-              'active',
-              link.getAttribute('href') === `#${entry.target.id}`
-            );
-          });
-        }
-      });
-    },
-    { rootMargin: '-40% 0px -55% 0px' }
-  );
-
-  sections.forEach((s) => observer.observe(s));
-}
-
-
-renderContent();
+render();

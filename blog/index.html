@@ -3,65 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog — Glenn</title>
-  <meta name="description" content="Thoughts on software, tools, and the craft of building things." />
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta name="description" content="Writing" />
+  <title>Blog</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-inner">
-      <a href="/" class="nav-logo" id="nav-logo"></a>
-      <ul class="nav-links" id="nav-links"></ul>
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
-    </div>
-  </nav>
+  <header>
+    <h1><a id="site-name" href="../"></a></h1>
+    <nav class="header-nav" id="header-nav">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀︎</button>
+    </nav>
+  </header>
 
-  <!-- HEADER -->
-  <div class="page-header">
-    <p class="section-label">Blog</p>
-    <h1 class="section-title">Thoughts & Writing</h1>
-    <p class="section-desc">Notes on software, tools, and things I find interesting.</p>
-  </div>
+  <section>
+    <h2>Writing</h2>
+    <div class="blog-list" id="blog-list"></div>
+    <div class="blog-pagination" id="blog-pagination"></div>
+  </section>
 
-  <!-- POST LIST -->
-  <div class="blog-list">
+  <hr />
 
-    <a href="post.html?post=getting-started-with-github-pages" class="blog-card">
-      <div>
-        <p class="blog-card-meta">March 21, 2026 &nbsp;·&nbsp; 4 min read</p>
-        <h3>Getting Started with GitHub Pages</h3>
-        <p>A step-by-step guide to hosting your static site for free using GitHub Pages.</p>
-      </div>
-      <span class="blog-card-arrow">→</span>
-    </a>
-
-    <a href="#" class="blog-card">
-      <div>
-        <p class="blog-card-meta">March 10, 2026 &nbsp;·&nbsp; 6 min read</p>
-        <h3>Why I Switched from React to Plain HTML for My Personal Site</h3>
-        <p>Sometimes the simplest tool is the right one. Here's my reasoning.</p>
-      </div>
-      <span class="blog-card-arrow">→</span>
-    </a>
-
-    <a href="#" class="blog-card">
-      <div>
-        <p class="blog-card-meta">February 28, 2026 &nbsp;·&nbsp; 8 min read</p>
-        <h3>Go Concurrency Patterns I Use Every Day</h3>
-        <p>Practical goroutine and channel patterns that make concurrent code easier to reason about.</p>
-      </div>
-      <span class="blog-card-arrow">→</span>
-    </a>
-
-  </div>
-
-  <!-- FOOTER -->
   <footer>
-    <p>© 2026 Glenn. Built with plain HTML, CSS & JS. Hosted on GitHub Pages.</p>
+    <p id="footer-text"></p>
   </footer>
 
   <script src="../js/main.js"></script>
