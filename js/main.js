@@ -26,10 +26,9 @@ if (toggleBtn) {
   });
 }
 
-// Resolve content.json path based on page depth
+// Resolve content.json path relative to current page
 function contentPath() {
-  const depth = window.location.pathname.split('/').filter(Boolean).length;
-  return depth >= 2 ? '../content.json' : '/content.json';
+  return window.location.pathname.includes('/blog/') ? '../content.json' : 'content.json';
 }
 
 async function render() {
@@ -49,7 +48,7 @@ async function render() {
     const onBlogPage = window.location.pathname.includes('/blog/');
     c.site.nav.forEach((item) => {
       const a = document.createElement('a');
-      a.href = onBlogPage ? item.url.replace(/^\//, '../') : item.url;
+      a.href = onBlogPage ? '../' + item.url : item.url;
       a.textContent = item.label;
       nav.insertBefore(a, toggleBtn);
     });

@@ -4,10 +4,10 @@
     "description": "Data engineer specializing in Python, SQL, Power BI, and AWS.",
     "navLogo": "laciapag.ai",
     "nav": [
-      { "label": "Experience", "url": "/#experience" },
-      { "label": "Skills",     "url": "/#skills" },
-      { "label": "Contact",    "url": "/#contact" },
-      { "label": "Blog",       "url": "/blog/" }
+      { "label": "Experience", "url": "#experience" },
+      { "label": "Skills",     "url": "#skills" },
+      { "label": "Contact",    "url": "#contact" },
+      { "label": "Blog",       "url": "blog/" }
     ]
   },
   "hero": {
