@@ -132,4 +132,27 @@ async function render() {
   if (footerEl) footerEl.textContent = c.footer;
 }
 
-render();
+render().then(() => {
+  function animateOnScroll(selector, delay) {
+    const els = document.querySelectorAll(selector);
+    if (!els.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          setTimeout(() => el.classList.add('visible'), parseInt(el.dataset.index, 10) * delay);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    els.forEach((el, i) => {
+      el.dataset.index = i;
+      observer.observe(el);
+    });
+  }
+
+  animateOnScroll('.skill-card', 100);
+  animateOnScroll('.exp-item', 150);
+});
