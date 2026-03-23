@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title></title>
-  <meta name="description" content="" />
+  <title>Blog Post — Glenn Laciapag</title>
+  <meta name="description" content="A blog post by Glenn Laciapag." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Blog Post — Glenn Laciapag" />
+  <meta property="og:description" content="A blog post by Glenn Laciapag." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Blog Post — Glenn Laciapag" />
+  <meta name="twitter:description" content="A blog post by Glenn Laciapag." />
+  <link rel="canonical" href="https://glaciapag.github.io/LACIAPAGAI-WEB/blog/post.html" />
+  <link rel="alternate" type="application/rss+xml" title="Glenn Laciapag's Blog" href="../feed.xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
@@ -26,8 +34,6 @@
 
   <div class="post-body" id="post-body"></div>
 
-  <hr />
-
   <footer>
     <p id="footer-text"></p>
   </footer>
@@ -37,6 +43,11 @@
   <script src="../js/highlight.min.js"></script>
   <script>
     marked.use({ breaks: true });
+
+    function setMeta(attr, value, content) {
+      const el = document.querySelector(`meta[${attr}="${value}"]`);
+      if (el) el.setAttribute('content', content);
+    }
 
     function parseFrontmatter(text) {
       const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -58,8 +69,12 @@
         if (!res.ok) throw new Error();
         const { meta, content } = parseFrontmatter(await res.text());
 
-        document.title = `${meta.title || slug}`;
+        document.title = `${meta.title || slug} — Glenn Laciapag`;
         document.querySelector('meta[name="description"]').setAttribute('content', meta.description || '');
+        setMeta('property', 'og:title', meta.title || slug);
+        setMeta('property', 'og:description', meta.description || '');
+        setMeta('name', 'twitter:title', meta.title || slug);
+        setMeta('name', 'twitter:description', meta.description || '');
         document.getElementById('post-title').textContent = meta.title || slug;
         document.getElementById('post-meta').textContent = [meta.date, meta.readTime].filter(Boolean).join(' · ');
         document.getElementById('post-body').innerHTML = marked.parse(content);

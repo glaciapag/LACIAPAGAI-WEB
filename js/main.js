@@ -26,6 +26,11 @@ if (toggleBtn) {
   });
 }
 
+function setMeta(attr, value, content) {
+  const el = document.querySelector(`meta[${attr}="${value}"]`);
+  if (el) el.setAttribute('content', content);
+}
+
 // Resolve content.json path relative to current page
 function contentPath() {
   return window.location.pathname.includes('/blog/') ? '../content.json' : 'content.json';
@@ -38,6 +43,10 @@ async function render() {
   // Meta
   document.title = c.site.title;
   document.querySelector('meta[name="description"]')?.setAttribute('content', c.site.description);
+  setMeta('property', 'og:title', c.site.title);
+  setMeta('property', 'og:description', c.site.description);
+  setMeta('name', 'twitter:title', c.site.title);
+  setMeta('name', 'twitter:description', c.site.description);
 
   // Header
   const siteName = document.getElementById('site-name');
@@ -54,23 +63,45 @@ async function render() {
     });
   }
 
+  // Hero
+  const heroName = document.getElementById('hero-name');
+  if (heroName) heroName.textContent = c.hero.name;
+  const heroTagline = document.getElementById('hero-tagline');
+  if (heroTagline) heroTagline.textContent = c.hero.tagline;
+
   // About
   const aboutEl = document.getElementById('about-paragraphs');
   if (aboutEl) {
     aboutEl.innerHTML = c.about.paragraphs.map((p) => `<p>${p}</p>`).join('');
   }
 
+  // Floating tags
+  const floatingEl = document.getElementById('floating-tags');
+  if (floatingEl && c.skills) {
+    const tags = c.skills.flatMap((g) => g.items);
+    floatingEl.innerHTML = tags.map((tag) => {
+      const top = Math.random() * 85;
+      const left = Math.random() * 80;
+      const delay = (Math.random() * -20).toFixed(1);
+      const duration = (12 + Math.random() * 10).toFixed(1);
+      return `<span class="float-tag" style="top:${top}%;left:${left}%;animation-delay:${delay}s;animation-duration:${duration}s">${tag}</span>`;
+    }).join('');
+  }
+
+
   // Experience
   const expEl = document.getElementById('experience-list');
   if (expEl) {
     expEl.innerHTML = c.experience.map((e) => `
       <div class="exp-item">
-        <div class="exp-header">
-          <span class="exp-role">${e.role}</span>
-          <span class="exp-period">${e.period}</span>
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-role">${e.role}</span>
+            <span class="exp-period">${e.period}</span>
+          </div>
+          <div class="exp-company">${e.company}</div>
+          <p class="exp-desc">${e.description}</p>
         </div>
-        <div class="exp-company">${e.company}</div>
-        <p class="exp-desc">${e.description}</p>
       </div>
     `).join('');
   }
@@ -90,9 +121,7 @@ async function render() {
   const contactEl = document.getElementById('contact-links');
   if (contactEl) {
     contactEl.innerHTML = c.contact.links.map((l) => `
-      <p class="contact-line">
-        <a href="${l.url}" ${l.url.startsWith('http') ? 'target="_blank"' : ''}>${l.label}</a>
-      </p>
+      <a class="contact-pill" href="${l.url}" ${l.url.startsWith('http') ? 'target="_blank"' : ''}>${l.label}</a>
     `).join('');
   }
 
@@ -109,7 +138,7 @@ async function render() {
 
     blogListEl.innerHTML = slice.map((p) => `
       <a href="${base}post.html?post=${p.slug}" class="blog-card">
-        <p class="blog-card-meta">${p.date}</p>
+        <p class="blog-card-meta">${p.date}${p.readTime ? ' · ' + p.readTime : ''}</p>
         <h3>${p.title}</h3>
         <p>${p.description}</p>
       </a>

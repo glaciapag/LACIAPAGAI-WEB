@@ -31,7 +31,12 @@ This is a **zero-dependency static site** (pure HTML/CSS/JS). All pages are thin
 
 **Adding a blog post:**
 1. Create `/blog/posts/<slug>.md` with YAML frontmatter (`title`, `date`, `readTime`, `description`)
-2. Add an entry to the `posts` array in `content.json` with matching `slug`, `title`, `date`, and `description`
+2. Add an entry to the `posts` array in `content.json` with matching `slug`, `title`, `date`, `readTime`, and `description`
+3. Add a `<url>` entry to `sitemap.xml` and an `<item>` entry to `feed.xml`
+
+**Conventions:**
+- Dates use the format `"Month DD, YYYY"` (e.g., "March 21, 2026") in both `content.json` and frontmatter
+- `readTime` is required in both `content.json` and frontmatter (e.g., "4 min read")
 
 ### Theming
 
