@@ -13,7 +13,7 @@
   --bg-subtle: #f8f8f8;
   --dot: rgba(0, 0, 0, 0.1);
   --max-w: 680px;
-  --font: 'Georgia', serif;
+  --font: system-ui, sans-serif;
   --font-sans: system-ui, sans-serif;
   --font-mono: 'Fira Code', 'Courier New', monospace;
   --grad-a: #2563eb;
@@ -90,7 +90,7 @@ header {
 }
 
 header h1 {
-  font-family: var(--font-sans);
+
   font-size: 1.6rem;
   font-weight: 700;
 }
@@ -108,18 +108,13 @@ header h1 a:hover {
   opacity: 0.8;
 }
 
-/* MONOSPACE ACCENTS */
-.exp-period,
-.blog-card-meta,
-.post-meta {
-  font-family: var(--font-mono);
-}
+/* Only the logo keeps monospace — everything else inherits system sans */
 
 .header-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.2rem 1.2rem;
-  font-family: var(--font-sans);
+
   font-size: 0.9rem;
   color: var(--muted);
   align-items: center;
@@ -173,7 +168,7 @@ header h1 a:hover {
 }
 
 .hero-name {
-  font-family: var(--font-sans);
+
   font-size: 2.2rem;
   font-weight: 700;
   line-height: 1.2;
@@ -181,7 +176,7 @@ header h1 a:hover {
 }
 
 .hero-tagline {
-  font-family: var(--font-sans);
+
   font-size: 1rem;
   color: var(--muted);
   line-height: 1.5;
@@ -193,7 +188,7 @@ section {
 }
 
 section h2 {
-  font-family: var(--font-sans);
+
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -214,42 +209,38 @@ section h2 {
   margin-bottom: 0;
 }
 
-/* FLOATING TAGS */
-.about-wrap {
+/* INTRO (HERO + ABOUT) VIDEO BACKGROUND */
+.intro-wrap {
   position: relative;
   overflow: hidden;
-  padding: 1rem 0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
 }
 
-.bio {
+.intro-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="dark"] .intro-video {
+  opacity: 0.1;
+}
+
+.intro-wrap #hero,
+.intro-wrap #about {
   position: relative;
   z-index: 1;
 }
 
-.floating-tags {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.float-tag {
-  position: absolute;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--muted);
-  opacity: 0.25;
-  white-space: nowrap;
-  animation: drift linear infinite;
-}
-
-@keyframes drift {
-  0%   { transform: translate(0, 0); }
-  25%  { transform: translate(12px, -8px); }
-  50%  { transform: translate(-6px, -16px); }
-  75%  { transform: translate(-14px, -4px); }
-  100% { transform: translate(0, 0); }
+.bio {
+  position: relative;
 }
 
 /* EXPERIENCE TIMELINE */
@@ -365,18 +356,18 @@ section h2 {
 
 .exp-role {
   font-weight: bold;
-  font-family: var(--font-sans);
+
   font-size: 0.95rem;
 }
 
 .exp-period {
-  font-family: var(--font-sans);
+
   font-size: 0.8rem;
   color: var(--muted);
 }
 
 .exp-company {
-  font-family: var(--font-sans);
+
   font-size: 0.85rem;
   color: var(--muted);
   margin-bottom: 0.4rem;
@@ -395,7 +386,7 @@ section h2 {
 }
 
 .exp-tag {
-  font-family: var(--font-sans);
+
   font-size: 0.72rem;
   color: var(--muted);
   border: 1px solid var(--border);
@@ -433,7 +424,7 @@ section h2 {
 }
 
 .skill-card h4 {
-  font-family: var(--font-sans);
+
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -445,7 +436,7 @@ section h2 {
 .skill-card ul {
   list-style: none;
   padding-left: 0;
-  font-family: var(--font-sans);
+
   font-size: 0.85rem;
   display: flex;
   flex-direction: column;
@@ -462,7 +453,7 @@ section h2 {
 
 .contact-pill {
   display: inline-block;
-  font-family: var(--font-sans);
+
   font-size: 0.85rem;
   color: var(--text);
   border: 1px solid var(--border);
@@ -481,7 +472,7 @@ section h2 {
 /* FOOTER */
 footer {
   margin-top: 3rem;
-  font-family: var(--font-sans);
+
   font-size: 0.8rem;
   color: var(--muted);
   padding-top: 1.5rem;
@@ -500,7 +491,7 @@ footer {
   border-left: 3px solid var(--border);
   border-radius: 6px;
   padding: 1rem 1.1rem;
-  font-family: var(--font-sans);
+
   display: block;
   color: var(--text);
   transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
@@ -539,7 +530,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   margin-top: 1.5rem;
-  font-family: var(--font-sans);
+
   font-size: 0.85rem;
   color: var(--muted);
 }
@@ -550,7 +541,7 @@ footer {
 
 /* BLOG POST */
 .post-back {
-  font-family: var(--font-sans);
+
   font-size: 0.85rem;
   color: var(--muted);
   display: inline-block;
@@ -565,21 +556,21 @@ footer {
 
 .post-title {
   font-size: 1.6rem;
-  font-family: var(--font-sans);
+
   font-weight: 700;
   margin-bottom: 0.4rem;
   line-height: 1.3;
 }
 
 .post-meta {
-  font-family: var(--font-sans);
+
   font-size: 0.8rem;
   color: var(--muted);
   margin-bottom: 2.5rem;
 }
 
 .post-body h2 {
-  font-family: var(--font-sans);
+
   font-size: 1.1rem;
   font-weight: 700;
   margin: 2rem 0 0.75rem;
@@ -589,7 +580,7 @@ footer {
 }
 
 .post-body h3 {
-  font-family: var(--font-sans);
+
   font-size: 0.95rem;
   font-weight: 700;
   margin: 1.5rem 0 0.5rem;

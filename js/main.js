@@ -75,18 +75,6 @@ async function render() {
     aboutEl.innerHTML = c.about.paragraphs.map((p) => `<p>${p}</p>`).join('');
   }
 
-  // Floating tags
-  const floatingEl = document.getElementById('floating-tags');
-  if (floatingEl && c.skills) {
-    const tags = c.skills.flatMap((g) => g.items);
-    floatingEl.innerHTML = tags.map((tag) => {
-      const top = Math.random() * 85;
-      const left = Math.random() * 80;
-      const delay = (Math.random() * -20).toFixed(1);
-      const duration = (12 + Math.random() * 10).toFixed(1);
-      return `<span class="float-tag" style="top:${top}%;left:${left}%;animation-delay:${delay}s;animation-duration:${duration}s">${tag}</span>`;
-    }).join('');
-  }
 
 
   // Experience
