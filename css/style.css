@@ -209,36 +209,6 @@ section h2 {
   margin-bottom: 0;
 }
 
-/* INTRO (HERO + ABOUT) VIDEO BACKGROUND */
-.intro-wrap {
-  position: relative;
-  overflow: hidden;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-}
-
-.intro-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 0;
-}
-
-[data-theme="dark"] .intro-video {
-  opacity: 0.1;
-}
-
-.intro-wrap #hero,
-.intro-wrap #about {
-  position: relative;
-  z-index: 1;
-}
-
 .bio {
   position: relative;
 }
